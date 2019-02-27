@@ -13,7 +13,7 @@ jobs:
   include:
     - stage: build and publish
       language: node_js
-       node_js:
+      node_js:
         - "10"
       install: skip
       script: yarn test
