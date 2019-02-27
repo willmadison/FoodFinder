@@ -15,5 +15,4 @@ jobs:
       language: node_js
       node_js:
         - "10"
-      install: skip
       script: yarn test
