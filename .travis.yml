@@ -23,6 +23,7 @@ jobs:
         - "10"
       script: 
         - yarn build
+        - touch build/Staticfile
         - tar -zcvf FoodFinder.tar.gz build
       before_deploy:
         - git config --local user.name "Travis CI"
@@ -34,5 +35,22 @@ jobs:
         file:
           - "FoodFinder.tar.gz"
         skip_cleanup: true
+    - stage: deploy
+      language: node_js
+      node_js:
+        - "10"
+      script:
+        - echo "Downloading FoodFinder $RELEASE_TAG"
+        - wget https://github.com/$GITHUB_USERNAME/FoodFinder/releases/download/$RELEASE_TAG/FoodFinder.tar.gz
+        - tar -zxvf FoodFinder.tar.gz
+      deploy:
+        provider: cloudfoundry
+        api: $CF_API_URL
+        username: $CF_USERNAME
+        password: $CF_PASSWORD
+        organization: $CF_ORG
+        space: development 
+
+
 
 
