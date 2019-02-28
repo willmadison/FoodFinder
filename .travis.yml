@@ -5,14 +5,34 @@ notifications:
 env:
   - RELEASE_TAG="release-$TRAVIS_BUILD_NUMBER"
 stages:
+  - test
   - build and publish
   - deploy
 if: tag IS blank
 
 jobs:
   include:
-    - stage: build and publish
+    - stage: test
       language: node_js
       node_js:
         - "10"
       script: yarn test
+    - stage: build and publish
+      language: node_js
+      node_js:
+        - "10"
+      script: 
+        - yarn build
+        - tar -zcvf FoodFinder.tar.gz build
+      before_deploy:
+        - git config --local user.name "Travis CI"
+        - git config --local user.email "travis@example.com"
+        - git tag -f $RELEASE_TAG
+      deploy:
+        provider: releases
+        api_key: $GITHUB_OAUTH_TOKEN
+        file:
+          - "FoodFinder.tar.gz"
+        skip_cleanup: true
+
+
