@@ -36,9 +36,7 @@ jobs:
           - "FoodFinder.tar.gz"
         skip_cleanup: true
     - stage: deploy
-      language: node_js
-      node_js:
-        - "10"
+      install: skip
       script:
         - echo "Downloading FoodFinder $RELEASE_TAG"
         - wget https://github.com/$GITHUB_USERNAME/FoodFinder/releases/download/$RELEASE_TAG/FoodFinder.tar.gz
