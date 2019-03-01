@@ -1,0 +1,11 @@
+#search-icon {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    margin-left: -20px;
+}
+
+#location-search {
+    height: 1.75em;
+    margin: 5px 0;
+}

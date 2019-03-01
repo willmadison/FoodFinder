@@ -7,6 +7,6 @@ describe('Searching by city', function() {
     cy.visit('http://localhost:3000');
 
     // fails!
-    cy.contains('Enter location');
+    cy.contains('Enter Location');
   });
 });
