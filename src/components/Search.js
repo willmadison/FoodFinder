@@ -1,6 +1,5 @@
 import React from 'react';
 import searchbutton from '../icons/search.png';
-import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom'
 import './Search.css';
 
@@ -42,7 +41,7 @@ export class Search extends React.Component {
               onChange={this.handleChange}>
             </input>
             
-            <img id='search-icon' src={searchbutton} onClick={() => {
+            <img id='search-icon' alt='Search' src={searchbutton} onClick={() => {
               this.setState({ searchExecuted: true });
               if (value) {
                 history.push('/results');
